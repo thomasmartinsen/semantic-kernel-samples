@@ -2,7 +2,6 @@ using System.Net;
 using System.Text.RegularExpressions;
 using Azure;
 using Azure.AI.OpenAI;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
