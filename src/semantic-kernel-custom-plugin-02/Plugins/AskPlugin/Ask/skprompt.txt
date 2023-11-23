@@ -1,7 +1,0 @@
-﻿INSTURCTIONS:
-Answer the question in a concise way.
-
-MISSING PARAMETER DESCRIPTION:
-{{$input}}
-
-ANSWER:
