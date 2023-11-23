@@ -31,14 +31,14 @@ string prompt = "write a text of 100 words in danish about the world";
 //string prompt = "how is the weather today in copenhagen, denmark";
 Console.WriteLine(prompt);
 
-//var result = await PromptAsync(prompt);
-//Console.WriteLine(result);
+var result = await PromptAsync(prompt);
+Console.WriteLine(result);
 
-await foreach (var response in PromptStreamingAsync(prompt))
-{
-    Console.WriteLine(response.Content);
-    await Task.Delay(10);
-}
+//await foreach (var response in PromptStreamingAsync(prompt))
+//{
+//    Console.WriteLine(response.Content);
+//    await Task.Delay(10);
+//}
 
 async IAsyncEnumerable<TokenizedResponse> PromptStreamingAsync(string input, CancellationToken cancellationToken = default)
 {
@@ -71,16 +71,6 @@ async Task<string> PromptAsync(string input, CancellationToken cancellationToken
     _session.Add(new ChatMessage(ChatRole.User, input));
     var options = GenerateChatCompletionsOptions();
 
-    //WeatherSkill weatherSkill = new(
-    //    _serviceOptions.Endpoint,
-    //    _serviceOptions.Key,
-    //    _serviceOptions.Models.Completion);
-
-    //if (_isSkillsEnabled)
-    //{
-    //    options.Functions.Add(weatherSkill.GetDefinition());
-    //}
-
     Azure.Response<ChatCompletions> response =
         await _client.GetChatCompletionsAsync(
             deploymentOrModelName: completionModel,
@@ -89,22 +79,6 @@ async Task<string> PromptAsync(string input, CancellationToken cancellationToken
 
     ChatCompletions completions = response.Value;
     string result = string.Empty;
-
-    //if (_isSkillsEnabled &&
-    //    response.Value.Choices[0].Message?.FunctionCall?.Name is string name)
-    //{
-    //    var arguments = response.Value.Choices[0].Message?.FunctionCall?.Arguments;
-
-    //    switch (name)
-    //    {
-    //        case nameof(WeatherSkill):
-    //            result = await weatherSkill.ExecuteAsync(arguments);
-    //            break;
-    //        default:
-    //            result = null;
-    //            break;
-    //    }
-    //}
 
     if (string.IsNullOrEmpty(result) && response.Value.Choices.Count > 0)
     {
