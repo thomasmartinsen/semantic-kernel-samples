@@ -2,6 +2,7 @@ using System.Net;
 using System.Text.RegularExpressions;
 using Azure;
 using Azure.AI.OpenAI;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
@@ -17,21 +18,11 @@ public class WeatherPlugin
     private readonly string _apiKey;
     private readonly string _model;
 
-    public WeatherPlugin()
+    public WeatherPlugin(IConfiguration configuration)
     {
-#if DEBUG
-        var configuration = new ConfigurationBuilder()
-            .AddUserSecrets("a22ed28e-227d-49a0-ac47-e603e9a70ec0")
-            .Build();
-
-        _apiKey = configuration["AzureOpenAI:ApiKey"];
-        _endpoint = configuration["AzureOpenAI:Endpoint"];
-        _model = configuration["AzureOpenAI:CompletionModel"];
-#else
-        _apiKey = Environment.GetEnvironmentVariable("AzureOpenAIApiKey", EnvironmentVariableTarget.Process);
-        _endpoint = Environment.GetEnvironmentVariable("AzureOpenAIEndpoint", EnvironmentVariableTarget.Process);
-        _model = Environment.GetEnvironmentVariable("AzureOpenAICompletionModel", EnvironmentVariableTarget.Process);
-#endif
+        _apiKey = configuration["ApiKey"];
+        _endpoint = configuration["Endpoint"];
+        _model = configuration["CompletionModel"];
     }
 
     [Function("GetWeather")]

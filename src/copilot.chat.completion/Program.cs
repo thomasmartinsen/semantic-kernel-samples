@@ -31,14 +31,14 @@ string prompt = "write a text of 100 words in danish about the world";
 //string prompt = "how is the weather today in copenhagen, denmark";
 Console.WriteLine(prompt);
 
-var result = await PromptAsync(prompt);
-Console.WriteLine(result);
+//var result = await PromptAsync(prompt);
+//Console.WriteLine(result);
 
-//await foreach (var response in PromptStreamingAsync(prompt))
-//{
-//    Console.WriteLine(response.Content);
-//    await Task.Delay(10);
-//}
+await foreach (var response in PromptStreamingAsync(prompt))
+{
+    Console.WriteLine(response.Content);
+    await Task.Delay(10);
+}
 
 async IAsyncEnumerable<TokenizedResponse> PromptStreamingAsync(string input, CancellationToken cancellationToken = default)
 {
