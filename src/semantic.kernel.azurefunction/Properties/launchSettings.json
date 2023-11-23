@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "WeatherPlugin": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 4607",
+      "launchBrowser": false
+    }
+  }
+}

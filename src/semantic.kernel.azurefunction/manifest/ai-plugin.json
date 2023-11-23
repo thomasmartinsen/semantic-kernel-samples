@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "v1",
+  "nameForModel": "WeatherPlugin",
+  "nameForHuman": "Weather Plugin",
+  "descriptionForModel": "Get the weather forecast of a given location.",
+  "descriptionForHuman": "Get the weather forecast of a given location.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "{url}/api/swagger.json"
+  },
+  "logoUrl": "{url}/logo.png",
+  "contactEmail": "support@weather.com",
+  "legalInfoUrl": "http://www.weather.com/legal"
+}

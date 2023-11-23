@@ -1,0 +1,9 @@
+INSTURCTIONS:
+rewrite the text into a business email.
+use a professionel tone that is clear and concise. 
+sign the email as AI assistant.
+
+MISSING PARAMETER DESCRIPTION:
+{{$input}}
+
+ANSWER:
